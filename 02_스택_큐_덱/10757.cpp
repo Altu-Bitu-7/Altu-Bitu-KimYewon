@@ -3,61 +3,61 @@
 
 using namespace std;
 
-int charToint(char ch) { //char -> int º¯È¯ ÇÔ¼ö
-    return (ch - '0'); //char°ª¿¡¼­ '0'À» »©¸é intÇüÀ¸·Î º¯È¯µÊ(*¾Æ½ºÅ°ÄÚµå)
+int charToint(char ch) { //char -> int ë³€í™˜ í•¨ìˆ˜
+    return (ch - '0'); //charê°’ì—ì„œ '0'ì„ ë¹¼ë©´ intí˜•ìœ¼ë¡œ ë³€í™˜ë¨(*ì•„ìŠ¤í‚¤ì½”ë“œ)
 }
 
-vector<int> calcPlus(string& a, string& b) { //a + b °è»êÇÏ´Â ÇÔ¼ö. ¸Å°³º¯¼ö¿¡ &¸¦ ºÙÀÌ¸é ¿øº»À» ÂüÁ¶
-    int idx_a = a.size() - 1; //aÀÇ ÀÏÀÇ ÀÚ¸® ÀÎµ¦½º
-    int idx_b = b.size() - 1; //bÀÇ ÀÏÀÇ ÀÚ¸® ÀÎµ¦½º
-    bool carry = false; //¿Ã¸² °ª(=carry) Ã³¸®¸¦ À§ÇÑ º¯¼ö
-    vector<int> ans; //¹İÈ¯ÇÒ ÃÖÁ¾ °á°ú°ª
+vector<int> calcPlus(string& a, string& b) { //a + b ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜. ë§¤ê°œë³€ìˆ˜ì— &ë¥¼ ë¶™ì´ë©´ ì›ë³¸ì„ ì°¸ì¡°
+    int idx_a = a.size() - 1; //aì˜ ì¼ì˜ ìë¦¬ ì¸ë±ìŠ¤
+    int idx_b = b.size() - 1; //bì˜ ì¼ì˜ ìë¦¬ ì¸ë±ìŠ¤
+    bool carry = false; //ì˜¬ë¦¼ ê°’(=carry) ì²˜ë¦¬ë¥¼ ìœ„í•œ ë³€ìˆ˜
+    vector<int> ans; //ë°˜í™˜í•  ìµœì¢… ê²°ê³¼ê°’
 
-    while (idx_b >= 0) { //b(´õ ÀÛÀº ÀÚ¸´¼ö¸¦ °¡Áø ¼ö)ÀÇ ¸ğµç ÀÚ¸´¼öÀÇ °è»êÀÌ ³¡³¯ ¶§±îÁö ¹İº¹
-        int num = charToint(a[idx_a--]) + charToint(b[idx_b--]); //¹®ÀÚ¸¦ ¼ıÀÚ·Î ¹Ù²Ù¾î ´õÇÏ°í, ÀÎµ¦½º º¯°æ
+    while (idx_b >= 0) { //b(ë” ì‘ì€ ìë¦¿ìˆ˜ë¥¼ ê°€ì§„ ìˆ˜)ì˜ ëª¨ë“  ìë¦¿ìˆ˜ì˜ ê³„ì‚°ì´ ëë‚  ë•Œê¹Œì§€ ë°˜ë³µ
+        int num = charToint(a[idx_a--]) + charToint(b[idx_b--]); //ë¬¸ìë¥¼ ìˆ«ìë¡œ ë°”ê¾¸ì–´ ë”í•˜ê³ , ì¸ë±ìŠ¤ ë³€ê²½
 
-        num += carry;            //num¿¡ carry ´õÇØÁÖ±â. (carry´Â ¾îÂ÷ÇÇ 1 ¾Æ´Ï¸é 0)
-        carry = num / 10;        //numÀÇ °ªÀÌ 10 ÀÌ»óÀÌ¸é carry°¡ 1, ¾Æ´Ï¸é 0
-        ans.push_back(num % 10); //¿Ã¸²À» Á¦¿ÜÇÑ °ª¸¸ ½ºÅÃ¿¡ push
+        num += carry;            //numì— carry ë”í•´ì£¼ê¸°. (carryëŠ” ì–´ì°¨í”¼ 1 ì•„ë‹ˆë©´ 0)
+        carry = num / 10;        //numì˜ ê°’ì´ 10 ì´ìƒì´ë©´ carryê°€ 1, ì•„ë‹ˆë©´ 0
+        ans.push_back(num % 10); //ì˜¬ë¦¼ì„ ì œì™¸í•œ ê°’ë§Œ ìŠ¤íƒì— push
     }
 
-    //a(´õ ÀÚ¸´¼ö°¡ Å« ¼ö)¿¡¼­ ³²Àº ¼ıÀÚ ¹İ¿µ
-    while (idx_a >= 0) { //aÀÇ ÀÚ¸´¼ö°¡ ³²¾ÆÀÖ´Â µ¿¾È
-        int num = charToint(a[idx_a--]); //³²Àº ¼ıÀÚ¸¦ int·Î ¹Ù²Ù¾î num¿¡ ÀúÀåÇÏ°í, ÀÎµ¦½º º¯°æ
+    //a(ë” ìë¦¿ìˆ˜ê°€ í° ìˆ˜)ì—ì„œ ë‚¨ì€ ìˆ«ì ë°˜ì˜
+    while (idx_a >= 0) { //aì˜ ìë¦¿ìˆ˜ê°€ ë‚¨ì•„ìˆëŠ” ë™ì•ˆ
+        int num = charToint(a[idx_a--]); //ë‚¨ì€ ìˆ«ìë¥¼ intë¡œ ë°”ê¾¸ì–´ numì— ì €ì¥í•˜ê³ , ì¸ë±ìŠ¤ ë³€ê²½
 
-        num += carry; //num¿¡ carry ´õÇØÁÖ±â
-        carry = num / 10; //numÀÇ °ªÀÌ 10 ÀÌ»óÀÌ¸é carry°¡ 1, ¾Æ´Ï¸é 0
-        ans.push_back(num % 10); //¿Ã¸²À» Á¦¿ÜÇÑ °ª¸¸ ½ºÅÃ¿¡ push
+        num += carry; //numì— carry ë”í•´ì£¼ê¸°
+        carry = num / 10; //numì˜ ê°’ì´ 10 ì´ìƒì´ë©´ carryê°€ 1, ì•„ë‹ˆë©´ 0
+        ans.push_back(num % 10); //ì˜¬ë¦¼ì„ ì œì™¸í•œ ê°’ë§Œ ìŠ¤íƒì— push
     }
 
-    //³²Àº ¿Ã¸² È®ÀÎ
-    if (carry) { //carry°¡ ÀÖÀ¸¸é
-        ans.push_back(1); //³²Àº ¿Ã¸² °ªÀ» ½ºÅÃ¿¡ push
+    //ë‚¨ì€ ì˜¬ë¦¼ í™•ì¸
+    if (carry) { //carryê°€ ìˆìœ¼ë©´
+        ans.push_back(1); //ë‚¨ì€ ì˜¬ë¦¼ ê°’ì„ ìŠ¤íƒì— push
     }
 
-    return ans; //a + bÀÇ ÃÖÁ¾ °á°ú°ª ¹İÈ¯
+    return ans; //a + bì˜ ìµœì¢… ê²°ê³¼ê°’ ë°˜í™˜
 }
 
 int main() {
-    ios::sync_with_stdio(0); //ÀÔÃâ·Â ¼Óµµ Çâ»ó ÄÚµå
+    ios::sync_with_stdio(0); //ì…ì¶œë ¥ ì†ë„ í–¥ìƒ ì½”ë“œ
     cin.tie(0);
 
-    string a, b; //Å« ¼ö a, b -> stringÀ¸·Î ÀÔ·Â¹ŞÀ½(int, longÀº ¿¬»ê ½Ã ¿À¹öÇÃ·Î¿ì)
-    vector<int> ans; //a + bÀÇ °á°ú¸¦ ÀúÀåÇÒ vector ¼±¾ğ
+    string a, b; //í° ìˆ˜ a, b -> stringìœ¼ë¡œ ì…ë ¥ë°›ìŒ(int, longì€ ì—°ì‚° ì‹œ ì˜¤ë²„í”Œë¡œìš°)
+    vector<int> ans; //a + bì˜ ê²°ê³¼ë¥¼ ì €ì¥í•  vector ì„ ì–¸
 
-    //ÀÔ·Â
+    //ì…ë ¥
     cin >> a >> b;
 
-    //¿¬»ê
-    if (a.length() < b.length()) { // bÀÇ ±æÀÌ°¡ ´õ ±æ´Ù¸é(a¸¦ ´õ Å« ÀÚ¸´¼ö¸¦ °¡Áø ¼ö·Î °íÁ¤ÇÏ±â À§ÇÔ)
-        swap(a, b); //a¿Í b¸¦ swap
+    //ì—°ì‚°
+    if (a.length() < b.length()) { // bì˜ ê¸¸ì´ê°€ ë” ê¸¸ë‹¤ë©´(aë¥¼ ë” í° ìë¦¿ìˆ˜ë¥¼ ê°€ì§„ ìˆ˜ë¡œ ê³ ì •í•˜ê¸° ìœ„í•¨)
+        swap(a, b); //aì™€ bë¥¼ swap
     }
 
-    ans = calcPlus(a, b); //a + bÀÇ °ªÀ» ans º¯¼ö¿¡ ÀúÀå
+    ans = calcPlus(a, b); //a + bì˜ ê°’ì„ ans ë³€ìˆ˜ì— ì €ì¥
 
-    //Ãâ·Â
-    while (!ans.empty()) { //ans º¤ÅÍ°¡ ºñ¾îÀÖÁö ¾ÊÀº µ¿¾È
-        cout << ans.back(); //ansÀÇ µÚ¿¡ ÀÖ´Â °ªºÎÅÍ(Á¦ÀÏ Å« ÀÚ¸´¼öºÎÅÍ ¼ø¼­´ë·Î) Ãâ·Â
-        ans.pop_back(); //Ãâ·ÂÇÑ °ª pop
+    //ì¶œë ¥
+    while (!ans.empty()) { //ans ë²¡í„°ê°€ ë¹„ì–´ìˆì§€ ì•Šì€ ë™ì•ˆ
+        cout << ans.back(); //ansì˜ ë’¤ì— ìˆëŠ” ê°’ë¶€í„°(ì œì¼ í° ìë¦¿ìˆ˜ë¶€í„° ìˆœì„œëŒ€ë¡œ) ì¶œë ¥
+        ans.pop_back(); //ì¶œë ¥í•œ ê°’ pop
     }
 }
