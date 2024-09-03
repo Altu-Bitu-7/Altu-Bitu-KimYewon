@@ -15,10 +15,10 @@ vector<string> judgeStr(string str) {
 			s.push(ch);
 		}
 		else if (ch == ')') {
-			if (!s.empty() && s.top() == '(') { //Â¦ÀÌ ¸ÂÀ¸¸é pop
+			if (!s.empty() && s.top() == '(') { //ì§ì´ ë§ìœ¼ë©´ pop
 				s.pop();
 			}
-			else { //¿Ş°ıÈ£ ¾ø°Å³ª Â¦ÀÌ ¸ÂÁö ¾Ê´Â °æ¿ì
+			else { //ì™¼ê´„í˜¸ ì—†ê±°ë‚˜ ì§ì´ ë§ì§€ ì•ŠëŠ” ê²½ìš°
 				v.push_back("no");
 				return v;
 			}
@@ -27,13 +27,13 @@ vector<string> judgeStr(string str) {
 			if (!s.empty() && s.top() == '[') {
 				s.pop();
 			}
-			else { //¿Ş°ıÈ£ ¾ø°Å³ª Â¦ÀÌ ¸ÂÁö ¾Ê´Â °æ¿ì
+			else { //ì™¼ê´„í˜¸ ì—†ê±°ë‚˜ ì§ì´ ë§ì§€ ì•ŠëŠ” ê²½ìš°
 				v.push_back("no");
 				return v;
 			}
 		}
 	}
-	if (!s.empty()) { //´Ù ³¡³µ´Âµ¥ stackÀÌ not emptyÀÎ °æ¿ì
+	if (!s.empty()) { //ë‹¤ ëë‚¬ëŠ”ë° stackì´ not emptyì¸ ê²½ìš°
 		v.push_back("no");
 	}
 	else {
@@ -48,16 +48,16 @@ int main() {
 	string str;
 
 	while (true) {
-		//ÀÔ·Â
-		getline(cin, str); //°ø¹é Æ÷ÇÔ
+		//ì…ë ¥
+		getline(cin, str); //ê³µë°± í¬í•¨
 		if (str == ".") {
 			break;
 		}
 
-		//¿¬»ê
+		//ì—°ì‚°
 		vector<string> result = judgeStr(str);
 
-		//Ãâ·Â
+		//ì¶œë ¥
 		for (int i = 0; i < result.size(); i++) {
 			cout << result[i] << "\n";
 		}

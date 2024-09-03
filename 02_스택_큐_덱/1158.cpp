@@ -7,19 +7,19 @@ vector<int> calculatePer(queue<int> q, int n, int k) {
 	vector<int> v(n, 0);
 	int m,j = 0;
 
-	for (int i = 1; i <= n; i++) { //Å¥¿¡ ¼ø¼­´ë·Î °ª push
+	for (int i = 1; i <= n; i++) { //íì— ìˆœì„œëŒ€ë¡œ ê°’ push
 		q.push(i);
 	}
 
-	while (!q.empty()) { //Å¥°¡ empty°¡ ¾Æ´Ñ µ¿¾È
-		for (int i = 0; i < k - 1; i++) { //k-1¹ø popÇØ¼­ k¹øÂ° ¿ø¼Ò¿¡ µµ´Þ
+	while (!q.empty()) { //íê°€ emptyê°€ ì•„ë‹Œ ë™ì•ˆ
+		for (int i = 0; i < k - 1; i++) { //k-1ë²ˆ popí•´ì„œ kë²ˆì§¸ ì›ì†Œì— ë„ë‹¬
 			m = q.front();
 			q.pop();
-			q.push(m); //Ã³À½¿¡ popÇÑ ¿ø¼Òµé ´Ù½Ã µÚ¿¡ push
+			q.push(m); //ì²˜ìŒì— popí•œ ì›ì†Œë“¤ ë‹¤ì‹œ ë’¤ì— push
 		}
 
-		v[j++] = q.front(); //k¹øÂ° ¿ø¼Ò ¹ÝÈ¯ ¹× º¤ÅÍ¿¡ ÀúÀå
-		q.pop(); //¹ÝÈ¯ÇßÀ¸´Ï »èÁ¦
+		v[j++] = q.front(); //kë²ˆì§¸ ì›ì†Œ ë°˜í™˜ ë° ë²¡í„°ì— ì €ìž¥
+		q.pop(); //ë°˜í™˜í–ˆìœ¼ë‹ˆ ì‚­ì œ
 	}
 
 	return v;
@@ -30,13 +30,13 @@ int main() {
 	int n, k;
 	queue<int> q;
 
-	//ÀÔ·Â
+	//ìž…ë ¥
 	cin >> n >> k;
 
-	//¿¬»ê
+	//ì—°ì‚°
 	vector<int> result = calculatePer(q, n, k);
 
-	//Ãâ·Â
+	//ì¶œë ¥
 	cout << "<" << result[0];
 	for (int i = 1; i < n; i++) {
 		cout << ", " << result[i];
