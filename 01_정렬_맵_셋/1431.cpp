@@ -4,12 +4,12 @@
 
 using namespace std;
 
-//½Ã¸®¾ó¹øÈ£ÀÇ ¸ğµç ÀÚ¸®¼ö ÇÕ ±¸ÇÏ±â
+//ì‹œë¦¬ì–¼ë²ˆí˜¸ì˜ ëª¨ë“  ìë¦¬ìˆ˜ í•© êµ¬í•˜ê¸°
 int sum(string sn1) {
 	int result = 0;
 
 	for (int i = 0; i < sn1.length(); i++) {
-		if (isdigit(sn1[i])) { //¼ıÀÚÀÌ¸é
+		if (isdigit(sn1[i])) { //ìˆ«ìì´ë©´
 			result += sn1[i] - '0'; //char -> int
 		}
 	}
@@ -18,37 +18,37 @@ int sum(string sn1) {
 
 bool cmp(string sn1, string sn2) {
 
-	if (sn1.length() != sn2.length()) { //±æÀÌ°¡ ´Ù¸£¸é
-		return sn1.length() < sn2.length(); //sn1ÀÌ ±æ¸é swap
+	if (sn1.length() != sn2.length()) { //ê¸¸ì´ê°€ ë‹¤ë¥´ë©´
+		return sn1.length() < sn2.length(); //sn1ì´ ê¸¸ë©´ swap
 	}
 	else {
 		int sum1 = sum(sn1);
 		int sum2 = sum(sn2);
 
-		if (sum1 != sum2) { //ÀÚ¸®¼öÀÇ ÇÕÀÌ ´Ù¸£¸é
-			return sum1 < sum2; // sum1ÀÌ Å©¸é swap
+		if (sum1 != sum2) { //ìë¦¬ìˆ˜ì˜ í•©ì´ ë‹¤ë¥´ë©´
+			return sum1 < sum2; // sum1ì´ í¬ë©´ swap
 		}
-		else { //À§ÀÇ µÎ Á¶°ÇÀ¸·Î ºñ±³°¡ ºÒ°¡´ÉÇÏ¸é
-			return sn1 < sn2; //»çÀü¼ø
+		else { //ìœ„ì˜ ë‘ ì¡°ê±´ìœ¼ë¡œ ë¹„êµê°€ ë¶ˆê°€ëŠ¥í•˜ë©´
+			return sn1 < sn2; //ì‚¬ì „ìˆœ
 		}
 	}
 }
 
 int main() {
 
-	//ÀÔ·Â
-	int n; //±âÅ¸ °³¼ö
+	//ì…ë ¥
+	int n; //ê¸°íƒ€ ê°œìˆ˜
 	cin >> n;
-	vector<string> serial_num_arr(n, ""); //½Ã¸®¾ó³Ñ¹ö
+	vector<string> serial_num_arr(n, ""); //ì‹œë¦¬ì–¼ë„˜ë²„
 
 	for (int i = 0; i < n; i++) {
 		cin >> serial_num_arr[i];
 	}
 
-	//¿¬»ê
+	//ì—°ì‚°
 	sort(serial_num_arr.begin(), serial_num_arr.end(), cmp);
 
-	//Ãâ·Â
+	//ì¶œë ¥
 	for (int i = 0; i < n; i++) {
 		cout << serial_num_arr[i] << '\n';
 	}
