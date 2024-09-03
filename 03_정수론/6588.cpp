@@ -6,24 +6,24 @@ using namespace std;
 
 const int MAX = 1000000;
 
-//¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼
+//ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ì˜ ì²´
 void getPrime(vector<bool>& is_prime) {
 
-	is_prime[0] = is_prime[1] = false; //0°ú 1Àº ¼Ò¼öx
+	is_prime[0] = is_prime[1] = false; //0ê³¼ 1ì€ ì†Œìˆ˜x
 
 	for (int i = 2; i * i <= MAX; i++) {
-		if (is_prime[i]) { //i°¡ ¼Ò¼ö¶ó¸é
+		if (is_prime[i]) { //iê°€ ì†Œìˆ˜ë¼ë©´
 			for (int j = i * i; j <= MAX; j += i) {
-				is_prime[j] = false; //iÀÇ ¹è¼ö Á¦°Å
+				is_prime[j] = false; //iì˜ ë°°ìˆ˜ ì œê±°
 			}
 		}
 	}
 
-	/* Ã³À½¿¡ ½ÃµµÇÑ, ¼Ò¼ö¸¦ µû·Î ÀúÀåÇÏ°í ¾ç ³¡ºÎÅÍ ´õÇØº¸´Â ¹æ½Ä -> ½Ã°£ º¹Àâµµ°¡ ³Ê¹« Ä¿Á®¼­ ½Ã°£ ÃÊ°ú°¡ ³²
+	/* ì²˜ìŒì— ì‹œë„í•œ, ì†Œìˆ˜ë¥¼ ë”°ë¡œ ì €ì¥í•˜ê³  ì–‘ ëë¶€í„° ë”í•´ë³´ëŠ” ë°©ì‹ -> ì‹œê°„ ë³µì¡ë„ê°€ ë„ˆë¬´ ì»¤ì ¸ì„œ ì‹œê°„ ì´ˆê³¼ê°€ ë‚¨
 	vector<int> v;
 	for (int i = 2; i < MAX; i++) {
 		if (is_prime[i] == true) {
-			v.push_back(i); //¼Ò¼ö¸¦ ÀúÀåÇÏ´Â º¤ÅÍ
+			v.push_back(i); //ì†Œìˆ˜ë¥¼ ì €ì¥í•˜ëŠ” ë²¡í„°
 		}
 	}
 
@@ -32,10 +32,10 @@ void getPrime(vector<bool>& is_prime) {
 
 }
 
-//ÇÕÀÌ nÀÌ µÇ´Â µÎ È¦¼ö ¼Ò¼ö Ã£´Â ÇÔ¼ö
+//í•©ì´ nì´ ë˜ëŠ” ë‘ í™€ìˆ˜ ì†Œìˆ˜ ì°¾ëŠ” í•¨ìˆ˜
 tuple<int, int, int> goldbach(int n, vector<bool>& is_prime) {
 	
-	/* Ã³À½¿¡ ½ÃµµÇÑ, ¼Ò¼ö¸¦ µû·Î ÀúÀåÇÏ°í ¾ç ³¡ºÎÅÍ ´õÇØº¸´Â(b-a°¡ °¡Àå Å« °É Ã£¾Æ¾ß ÇÏ¹Ç·Î) ¹æ½Ä -> ½Ã°£ º¹Àâµµ°¡ ³Ê¹« Ä¿Á®¼­ ½Ã°£ ÃÊ°ú°¡ ³²
+	/* ì²˜ìŒì— ì‹œë„í•œ, ì†Œìˆ˜ë¥¼ ë”°ë¡œ ì €ì¥í•˜ê³  ì–‘ ëë¶€í„° ë”í•´ë³´ëŠ”(b-aê°€ ê°€ì¥ í° ê±¸ ì°¾ì•„ì•¼ í•˜ë¯€ë¡œ) ë°©ì‹ -> ì‹œê°„ ë³µì¡ë„ê°€ ë„ˆë¬´ ì»¤ì ¸ì„œ ì‹œê°„ ì´ˆê³¼ê°€ ë‚¨
 	int begin_idx = 0;
 	int end_idx = prime.size() - 1;
 
@@ -52,45 +52,45 @@ tuple<int, int, int> goldbach(int n, vector<bool>& is_prime) {
 	}
 	*/
 
-	for (int i = 0; i <= n / 2; i++) { //n/2±îÁö¸¸ È®ÀÎÇÏ¸é µÊ(¹İ ³ª´²¼­ Â¦À» ÀÌ·ç±â ¶§¹®. ex. 8 = 3 + 5 = 5 + 3
-		if (is_prime[i]) { //i°¡ ¼Ò¼öÀÌ¸é
-			if (is_prime[n - i]) { //n-iµµ ¼Ò¼öÀÌ¸é(ÇÕÀÌ nÀÌ µÇ´Â ´Ù¸¥ ¼öµµ ¼Ò¼öÀÎÁö È®ÀÎ)
+	for (int i = 0; i <= n / 2; i++) { //n/2ê¹Œì§€ë§Œ í™•ì¸í•˜ë©´ ë¨(ë°˜ ë‚˜ëˆ ì„œ ì§ì„ ì´ë£¨ê¸° ë•Œë¬¸. ex. 8 = 3 + 5 = 5 + 3
+		if (is_prime[i]) { //iê°€ ì†Œìˆ˜ì´ë©´
+			if (is_prime[n - i]) { //n-ië„ ì†Œìˆ˜ì´ë©´(í•©ì´ nì´ ë˜ëŠ” ë‹¤ë¥¸ ìˆ˜ë„ ì†Œìˆ˜ì¸ì§€ í™•ì¸)
 				return make_tuple(n, i, n - i);
 			}
 		}
 	}
 
-	return make_tuple(0, 0, 0); //µÎ È¦¼ö ¼Ò¼ö¸¦ Ã£±â ¸øÇÒ °æ¿ì tuple<0, 0, 0>À» ¹İÈ¯
+	return make_tuple(0, 0, 0); //ë‘ í™€ìˆ˜ ì†Œìˆ˜ë¥¼ ì°¾ê¸° ëª»í•  ê²½ìš° tuple<0, 0, 0>ì„ ë°˜í™˜
 }
 
 int main() {
 
-	//ÀÔÃâ·Â ¼Óµµ Çâ»ó
+	//ì…ì¶œë ¥ ì†ë„ í–¥ìƒ
 	ios::sync_with_stdio(false);
 	cin.tie(NULL);
 	cout.tie(NULL);
 
 	int n;
-	vector<tuple<int, int, int>> result; //°á°ú°ª ÀúÀåÇÒ tuple<ÁÖ¾îÁø ÀÔ·Â Á¤¼ö n, È¦¼ö ¼Ò¼ö a, È¦¼ö ¼Ò¼ö b>
+	vector<tuple<int, int, int>> result; //ê²°ê³¼ê°’ ì €ì¥í•  tuple<ì£¼ì–´ì§„ ì…ë ¥ ì •ìˆ˜ n, í™€ìˆ˜ ì†Œìˆ˜ a, í™€ìˆ˜ ì†Œìˆ˜ b>
 
-	//ÀÔ·Â & ¿¬»ê
+	//ì…ë ¥ & ì—°ì‚°
 	vector<bool> is_prime(MAX + 1, true);
-	getPrime(is_prime); //1 ~ MAXÀÇ ¼öÀÇ ¼Ò¼ö ÆÇº°
+	getPrime(is_prime); //1 ~ MAXì˜ ìˆ˜ì˜ ì†Œìˆ˜ íŒë³„
 
 	while (true) {
 		cin >> n;
 		if (n == 0) {
-			break; // 0 ÀÔ·Â ½Ã Á¾·á
+			break; // 0 ì…ë ¥ ì‹œ ì¢…ë£Œ
 		}
 
 		tuple<int, int, int> value = goldbach(n, is_prime);
 
-		result.push_back(value); //°á°ú°ª n, a, bÀÇ tupleÀ» º¤ÅÍ¿¡ ÀúÀå
+		result.push_back(value); //ê²°ê³¼ê°’ n, a, bì˜ tupleì„ ë²¡í„°ì— ì €ì¥
 	}
 
-	//Ãâ·Â
+	//ì¶œë ¥
 	for (int i = 0; i < result.size(); i++) {
-		if (get<0>(result[i]) == 0) { //tupleÀÇ Ã¹¹øÂ° °ªÀÌ 0ÀÏ °æ¿ì ÇØ´çÇÏ´Â µÎ È¦¼ö ¼Ò¼ö¸¦ Ã£±â ¸øÇÑ °Í.
+		if (get<0>(result[i]) == 0) { //tupleì˜ ì²«ë²ˆì§¸ ê°’ì´ 0ì¼ ê²½ìš° í•´ë‹¹í•˜ëŠ” ë‘ í™€ìˆ˜ ì†Œìˆ˜ë¥¼ ì°¾ê¸° ëª»í•œ ê²ƒ.
 			cout << "Goldbach's conjecture is wrong.\n";
 		}
 		cout << get<0>(result[i]) << " = " << get<1>(result[i]) << " + " << get<2>(result[i]) << "\n";

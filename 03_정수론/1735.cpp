@@ -5,13 +5,13 @@ using namespace std;
 
 int getGcd(int a, int b) {
 
-	//À¯Å¬¸®µå È£Á¦¹ı
+	//ìœ í´ë¦¬ë“œ í˜¸ì œë²•
 	while (a) {
 		b %= a;
 		swap(a, b);
 	}
 
-	return b; //ÃÖ´ë°ø¾à¼ö ¹İÈ¯
+	return b; //ìµœëŒ€ê³µì•½ìˆ˜ ë°˜í™˜
 }
 
 pair<int, int> sum(int a, int b, int c, int d, int lcm) {
@@ -25,10 +25,10 @@ pair<int, int> sum(int a, int b, int c, int d, int lcm) {
 	c *= tmp2;
 	d *= tmp2;
 
-	int num = a + c; //ºĞÀÚ
+	int num = a + c; //ë¶„ì
 
 	p.first = num;
-	p.second = b; //ºĞ¸ğ(b == d)
+	p.second = b; //ë¶„ëª¨(b == d)
 
 	return p;
 }
@@ -36,9 +36,9 @@ pair<int, int> sum(int a, int b, int c, int d, int lcm) {
 pair<int, int> calculateIrreFrac(int a, int b, int gcd) {
 	pair<int, int> irre_frac;
 
-	a /= gcd; //ºĞÀÚ¸¦ ÃÖ´ë°ø¾à¼ö·Î ³ª´®
-	b /= gcd; //ºĞ¸ğ¸¦ ÃÖ´ë°ø¾à¼ö·Î ³ª´®
-	irre_frac.first = a; //pair¿¡ ÀúÀå
+	a /= gcd; //ë¶„ìë¥¼ ìµœëŒ€ê³µì•½ìˆ˜ë¡œ ë‚˜ëˆ”
+	b /= gcd; //ë¶„ëª¨ë¥¼ ìµœëŒ€ê³µì•½ìˆ˜ë¡œ ë‚˜ëˆ”
+	irre_frac.first = a; //pairì— ì €ì¥
 	irre_frac.second = b;
 
 	return irre_frac;
@@ -48,20 +48,20 @@ int main() {
 
 	int a, b, c, d;
 
-	//ÀÔ·Â
-	cin >> a >> b; //Ã¹¹øÂ° ¼öÀÇ ºĞÀÚ(ºĞÀÚ < ºĞ¸ğ), ºĞ¸ğ
-	cin >> c >> d; //µÎ¹øÂ° ¼öÀÇ ºĞÀÚ, ºĞ¸ğ
+	//ì…ë ¥
+	cin >> a >> b; //ì²«ë²ˆì§¸ ìˆ˜ì˜ ë¶„ì(ë¶„ì < ë¶„ëª¨), ë¶„ëª¨
+	cin >> c >> d; //ë‘ë²ˆì§¸ ìˆ˜ì˜ ë¶„ì, ë¶„ëª¨
 
-	//¿¬»ê
-	int gcd1 = getGcd(b, d); //ºĞ¸ğ³¢¸®ÀÇ ÃÖ´ë°ø¾à¼ö
-	int lcm = (b * d) / gcd1; //ºĞ¸ğ³¢¸®ÀÇ ÃÖ¼Ò°ø¹è¼ö
+	//ì—°ì‚°
+	int gcd1 = getGcd(b, d); //ë¶„ëª¨ë¼ë¦¬ì˜ ìµœëŒ€ê³µì•½ìˆ˜
+	int lcm = (b * d) / gcd1; //ë¶„ëª¨ë¼ë¦¬ì˜ ìµœì†Œê³µë°°ìˆ˜
 
-	pair<int, int> sum_result = sum(a, b, c, d, lcm); //´õÇÏ±â
+	pair<int, int> sum_result = sum(a, b, c, d, lcm); //ë”í•˜ê¸°
 
-	int gcd2 = getGcd(sum_result.first, sum_result.second); //´õÇÑ °ªÀÇ ºĞÀÚ¿Í ºĞ¸ğÀÇ ÃÖ´ë°ø¾à¼ö
-	pair<int, int> result = calculateIrreFrac(sum_result.first, sum_result.second, gcd2); //¾àºĞ
+	int gcd2 = getGcd(sum_result.first, sum_result.second); //ë”í•œ ê°’ì˜ ë¶„ìì™€ ë¶„ëª¨ì˜ ìµœëŒ€ê³µì•½ìˆ˜
+	pair<int, int> result = calculateIrreFrac(sum_result.first, sum_result.second, gcd2); //ì•½ë¶„
 
-	//Ãâ·Â
+	//ì¶œë ¥
 	cout << result.first << " " << result.second;
 
 	return 0;

@@ -6,17 +6,17 @@ using namespace std;
 
 pair<vector<char>, int> luckyWheel(int s, char ch, pair<vector<char>, int>& p) {
 	
-	int idx = p.second + s; //°¡¸®Å°´Â ÀÎµ¦½º ÀúÀå
+	int idx = p.second + s; //ê°€ë¦¬í‚¤ëŠ” ì¸ë±ìŠ¤ ì €ì¥
 	vector<char> result = p.first;
 
-	if (idx >= result.size()) { //ÀÎµ¦½º°¡ º¤ÅÍÀÇ Å©±â¸¦ ³Ñ¾î°¡¸é
-		idx %= result.size(); //³ª¸ÓÁö ¿¬»ê
+	if (idx >= result.size()) { //ì¸ë±ìŠ¤ê°€ ë²¡í„°ì˜ í¬ê¸°ë¥¼ ë„˜ì–´ê°€ë©´
+		idx %= result.size(); //ë‚˜ë¨¸ì§€ ì—°ì‚°
 	}
 
-	if (result[idx] != '?') { //ÇØ´ç Ä­¿¡ ÀÌ¹Ì °ªÀÌ ÀÖÀ¸¸é
-		if (result[idx] != ch) { //´Ù¸¥ ±ÛÀÚÀÌ¸é Çà¿îÀÇ ¹ÙÄû ¼º¸³x ÀÌ¹Ç·Î ! Ãâ·Â(*±× °ªÀÌ °°Àº ±ÛÀÚÀÌ¸é ±×³É ³Ñ¾î°¨)
+	if (result[idx] != '?') { //í•´ë‹¹ ì¹¸ì— ì´ë¯¸ ê°’ì´ ìˆìœ¼ë©´
+		if (result[idx] != ch) { //ë‹¤ë¥¸ ê¸€ìì´ë©´ í–‰ìš´ì˜ ë°”í€´ ì„±ë¦½x ì´ë¯€ë¡œ ! ì¶œë ¥(*ê·¸ ê°’ì´ ê°™ì€ ê¸€ìì´ë©´ ê·¸ëƒ¥ ë„˜ì–´ê°)
 			cout << "!";
-			exit(0); //Á¾·á
+			exit(0); //ì¢…ë£Œ
 		}
 	}
 	else {
@@ -29,28 +29,28 @@ pair<vector<char>, int> luckyWheel(int s, char ch, pair<vector<char>, int>& p) {
 	return p;
 }
 
-//º¤ÅÍ¿¡ Áßº¹µÈ °ªÀÌ ÀÖ´ÂÁö È®ÀÎÇÏ´Â ÇÔ¼ö(*Áßº¹ ¹®ÀÚ°¡ Á¸ÀçÇÏ¸é Çà¿îÀÇ ¹ÙÄû ¼º¸³x)
+//ë²¡í„°ì— ì¤‘ë³µëœ ê°’ì´ ìˆëŠ”ì§€ í™•ì¸í•˜ëŠ” í•¨ìˆ˜(*ì¤‘ë³µ ë¬¸ìê°€ ì¡´ì¬í•˜ë©´ í–‰ìš´ì˜ ë°”í€´ ì„±ë¦½x)
 bool hasDuplicates(vector<char>& v) {
 	
-	unordered_set<char> s; //set ÀÌ¿ë
+	unordered_set<char> s; //set ì´ìš©
 
-	//º¤ÅÍÀÇ °¢ ¿ä¼Ò¸¦ ¼øÈ¸
+	//ë²¡í„°ì˜ ê° ìš”ì†Œë¥¼ ìˆœíšŒ
 	for (char ch : v) {
 
-		// '?'´Â ¹«½Ã(Áßº¹ÀÌ¾îµµ ±¦ÂúÀ½)
+		// '?'ëŠ” ë¬´ì‹œ(ì¤‘ë³µì´ì–´ë„ ê´œì°®ìŒ)
 		if (ch == '?') {
 			continue;
 		}
 
-		//°ªÀÌ ÀÌ¹Ì set¿¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎ
+		//ê°’ì´ ì´ë¯¸ setì— ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸
 		if (s.find(ch) != s.end()) {
-			return true; // Áßº¹ °ª Á¸Àç ½Ã true ¹İÈ¯
+			return true; // ì¤‘ë³µ ê°’ ì¡´ì¬ ì‹œ true ë°˜í™˜
 		}
-		//ÇöÀç °ªÀ» s¿¡ Ãß°¡
+		//í˜„ì¬ ê°’ì„ sì— ì¶”ê°€
 		s.insert(ch);
 	}
 
-	// ¸ğµç ¿ä¼Ò¸¦ ¼øÈ¸ÇÑ ÈÄ Áßº¹ÀÌ ¾øÀ¸¸é false ¹İÈ¯
+	// ëª¨ë“  ìš”ì†Œë¥¼ ìˆœíšŒí•œ í›„ ì¤‘ë³µì´ ì—†ìœ¼ë©´ false ë°˜í™˜
 	return false;
 }
 
@@ -59,9 +59,9 @@ int main() {
 	int n, k, s;
 	char ch;
 
-	//ÀÔ·Â & ¿¬»ê
+	//ì…ë ¥ & ì—°ì‚°
 	cin >> n >> k;
-	vector<char> result(n, '?'); //n°³ÀÇ Ä­, ?·Î ÃÊ±âÈ­
+	vector<char> result(n, '?'); //nê°œì˜ ì¹¸, ?ë¡œ ì´ˆê¸°í™”
 	pair<vector<char>, int> p;
 	p.first = result;
 	p.second = 0;
@@ -71,23 +71,23 @@ int main() {
 		p = luckyWheel(s, ch, p);
 	}
 
-	//Ãâ·Â
+	//ì¶œë ¥
 	result = p.first;
 	int idx = p.second;
 
-	if (hasDuplicates(result)) { //´Ù¸¥ Ä­ÀÎµ¥ Áßº¹ ±ÛÀÚ Á¸ÀçÇÏ´Â °æ¿ì
+	if (hasDuplicates(result)) { //ë‹¤ë¥¸ ì¹¸ì¸ë° ì¤‘ë³µ ê¸€ì ì¡´ì¬í•˜ëŠ” ê²½ìš°
 		cout << "!";
 		exit(0);
 	}
 
-	while (n--) { //n¹øµ¿¾È
-		if (idx == result.size()-1) { //ÀÎµ¦½º°¡ Á¦ÀÏ ³¡¿¡ ÀÖÀ¸¸é ¿ª¼øÀ¸·Î Ãâ·Â(¿ª¼ø == ½Ã°è¹æÇâ)
+	while (n--) { //në²ˆë™ì•ˆ
+		if (idx == result.size()-1) { //ì¸ë±ìŠ¤ê°€ ì œì¼ ëì— ìˆìœ¼ë©´ ì—­ìˆœìœ¼ë¡œ ì¶œë ¥(ì—­ìˆœ == ì‹œê³„ë°©í–¥)
 			cout << result[idx--];
 		}
 		else {
 			cout << result[idx--];
-			if (idx < 0) { //ÀÎµ¦½º°¡ À½¼ö°¡ µÇ¸é
-				idx += result.size(); //¸Ç ³¡À¸·Î ÀÌµ¿
+			if (idx < 0) { //ì¸ë±ìŠ¤ê°€ ìŒìˆ˜ê°€ ë˜ë©´
+				idx += result.size(); //ë§¨ ëìœ¼ë¡œ ì´ë™
 			}
 		}
 	}
