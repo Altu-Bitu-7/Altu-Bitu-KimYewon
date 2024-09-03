@@ -10,7 +10,7 @@ pair<vector<char>, int> luckyWheel(int s, char ch, pair<vector<char>, int>& p) {
 	vector<char> result = p.first;
 
 	if (idx >= result.size()) { //인덱스가 벡터의 크기를 넘어가면
-		idx -= result.size();
+		idx %= result.size(); //나머지 연산
 	}
 
 	if (result[idx] != '?') { //해당 칸에 이미 값이 있으면
@@ -36,6 +36,12 @@ bool hasDuplicates(vector<char>& v) {
 
 	//벡터의 각 요소를 순회
 	for (char ch : v) {
+
+		// '?'는 무시(중복이어도 괜찮음)
+		if (ch == '?') {
+			continue;
+		}
+
 		//값이 이미 set에 존재하는지 확인
 		if (s.find(ch) != s.end()) {
 			return true; // 중복 값 존재 시 true 반환
