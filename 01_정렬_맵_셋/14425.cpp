@@ -3,6 +3,14 @@
 
 using namespace std;
 
+void findStr(string str, map<string, int>& s, int& cnt) {
+
+	auto iter = s.find(str); //키 값(str) 존재하는지 순회하면서 확인
+	if (iter != s.end()) { //**존재하지 않으면 s.end() 반환
+		cnt++; //키 값 존재하면 cnt 증가
+	}
+}
+
 int main() {
 
 	//입력 & 연산
@@ -20,10 +28,7 @@ int main() {
 	}
 	for (int i = 0; i < m; i++) {
 		cin >> str;
-		auto iter = s.find(str); //키 값(str) 존재하는지 순회하면서 확인
-		if (iter != s.end()) { //**존재하지 않으면 s.end() 반환
-			cnt++; //키 값 존재하면 cnt 증가
-		}
+		findStr(str, s, cnt);
 	}
 
 	//출력

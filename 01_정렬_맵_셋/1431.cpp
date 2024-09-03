@@ -9,9 +9,8 @@ int sum(string sn1) {
 	int result = 0;
 
 	for (int i = 0; i < sn1.length(); i++) {
-		int num = sn1[i] - '0';//string -> int
-		if (num >= 0 && num <= 9) { //숫자이면
-			result = result + num;
+		if (isdigit(sn1[i])) { //숫자이면
+			result += sn1[i] - '0'; //char -> int
 		}
 	}
 	return result;
@@ -39,15 +38,15 @@ int main() {
 
 	//입력
 	int n; //기타 개수
-	string serial_num_arr[50]; //시리얼넘버
-
 	cin >> n;
+	vector<string> serial_num_arr(n, ""); //시리얼넘버
+
 	for (int i = 0; i < n; i++) {
 		cin >> serial_num_arr[i];
 	}
 
 	//연산
-	sort(serial_num_arr, serial_num_arr + n, cmp);
+	sort(serial_num_arr.begin(), serial_num_arr.end(), cmp);
 
 	//출력
 	for (int i = 0; i < n; i++) {
