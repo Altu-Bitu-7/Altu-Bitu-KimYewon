@@ -3,9 +3,17 @@
 
 using namespace std;
 
+void findStr(string str, map<string, int>& s, int& cnt) {
+
+	auto iter = s.find(str); //í‚¤ ê°’(str) ì¡´ì¬í•˜ëŠ”ì§€ ìˆœíšŒí•˜ë©´ì„œ í™•ì¸
+	if (iter != s.end()) { //**ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ s.end() ë°˜í™˜
+		cnt++; //í‚¤ ê°’ ì¡´ì¬í•˜ë©´ cnt ì¦ê°€
+	}
+}
+
 int main() {
 
-	//ÀÔ·Â & ¿¬»ê
+	//ì…ë ¥ & ì—°ì‚°
 	int n, m;
 	string str;
 	map<string, int> s;
@@ -14,19 +22,16 @@ int main() {
 
 	cin >> n;
 	cin >> m;
-	for (int i = 0; i < n; i++) { //mapÀ¸·Î n°³ÀÇ ¹®ÀÚ¿­ ÁıÇÕ ÀúÀå
+	for (int i = 0; i < n; i++) { //mapìœ¼ë¡œ nê°œì˜ ë¬¸ìì—´ ì§‘í•© ì €ì¥
 		cin >> str;
 		s[str] = val;
 	}
 	for (int i = 0; i < m; i++) {
 		cin >> str;
-		auto iter = s.find(str); //Å° °ª(str) Á¸ÀçÇÏ´ÂÁö ¼øÈ¸ÇÏ¸é¼­ È®ÀÎ
-		if (iter != s.end()) { //**Á¸ÀçÇÏÁö ¾ÊÀ¸¸é s.end() ¹İÈ¯
-			cnt++; //Å° °ª Á¸ÀçÇÏ¸é cnt Áõ°¡
-		}
+		findStr(str, s, cnt);
 	}
 
-	//Ãâ·Â
+	//ì¶œë ¥
 	cout << cnt;
 
 	return 0;
