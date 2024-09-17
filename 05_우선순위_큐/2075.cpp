@@ -3,10 +3,10 @@
 
 using namespace std;
 
-//n°³ÀÇ ¿ä¼Ò¸¦ °¡Áø ÃÖ¼Ò ÈüÀ» ¸¸µå´Â ÇÔ¼ö
+//nê°œì˜ ìš”ì†Œë¥¼ ê°€ì§„ ìµœì†Œ í™ì„ ë§Œë“œëŠ” í•¨ìˆ˜
 void makeMinHeap(int num, priority_queue<int, vector<int>, greater<int>>& pq, int n) {
 
-	/* ÀÌ·¸°Ô ±×³É ÃÖ´ë Èü¿¡ ´Ù ³ÖÀº ´ÙÀ½ ±¸ÇÏ¸é ¸Ş¸ğ¸® ÃÊ°ú
+	/* ì´ë ‡ê²Œ ê·¸ëƒ¥ ìµœëŒ€ í™ì— ë‹¤ ë„£ì€ ë‹¤ìŒ êµ¬í•˜ë©´ ë©”ëª¨ë¦¬ ì´ˆê³¼
 	for (int i = 0; i < n-1; i++) {
 		pq.pop();
 	}
@@ -14,26 +14,26 @@ void makeMinHeap(int num, priority_queue<int, vector<int>, greater<int>>& pq, in
 	return pq.top();
 	*/
 
-	pq.push(num); //°ª push
+	pq.push(num); //ê°’ push
 
-	if (pq.size() > n) { //pqÀÇ ¿ä¼Ò ¼ö°¡ n°³¸¦ ³ÑÀ¸¸é
-		pq.pop(); //°¡Àå ÀÛÀº ¼ö(root °ª) pop
+	if (pq.size() > n) { //pqì˜ ìš”ì†Œ ìˆ˜ê°€ nê°œë¥¼ ë„˜ìœ¼ë©´
+		pq.pop(); //ê°€ì¥ ì‘ì€ ìˆ˜(root ê°’) pop
 	}
 	
 }
 
 int main() {
 
-	//ÀÔÃâ·Â Çâ»ó ÄÚµå
+	//ì…ì¶œë ¥ í–¥ìƒ ì½”ë“œ
 	ios::sync_with_stdio(0);
 	cin.tie(NULL); 
 	cout.tie(NULL);
 
 	int n;
 	int num;
-	priority_queue<int, vector<int>, greater<int>> pq; //ÃÖ¼Ò Èü
+	priority_queue<int, vector<int>, greater<int>> pq; //ìµœì†Œ í™
 
-	//ÀÔ·Â & ¿¬»ê
+	//ì…ë ¥ & ì—°ì‚°
 	cin >> n;
 	for (int i = 0; i < n; i++) {
 		for (int j = 0; j < n; j++) {
@@ -42,8 +42,8 @@ int main() {
 		}
 	}
 
-	//Ãâ·Â
-	cout << pq.top(); //»óÀ§ n°³ÀÇ ¼ö Áß °¡Àå ÀÛÀº ¼ö°¡ n¹øÂ°·Î Å« ¼ö
+	//ì¶œë ¥
+	cout << pq.top(); //ìƒìœ„ nê°œì˜ ìˆ˜ ì¤‘ ê°€ì¥ ì‘ì€ ìˆ˜ê°€ në²ˆì§¸ë¡œ í° ìˆ˜
 
 	return 0;
 }

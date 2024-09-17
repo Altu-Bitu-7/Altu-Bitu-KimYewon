@@ -3,45 +3,45 @@
 
 using namespace std;
 
-//Ã¹¹øÂ° ´Ü¾îÀÇ ¾ËÆÄºª ±¸¼ºÀ» vector<int>·Î ÀúÀå
+//ì²«ë²ˆì§¸ ë‹¨ì–´ì˜ ì•ŒíŒŒë²³ êµ¬ì„±ì„ vector<int>ë¡œ ì €ì¥
 void getFirstWordAlpha(string first_word, vector<int>& first_alphabet) {
 
 	for (int i = 0; i < first_word.length(); i++) {
-		first_alphabet[first_word[i] - 'A']++; //´Ü¾îÀÇ ¾ËÆÄºªÀ» ¼ıÀÚ·Î º¯È¯, ÇØ´ç ÀÎµ¦½ºÀÇ first_alphabet º¤ÅÍ°ªÀ» +1 
+		first_alphabet[first_word[i] - 'A']++; //ë‹¨ì–´ì˜ ì•ŒíŒŒë²³ì„ ìˆ«ìë¡œ ë³€í™˜, í•´ë‹¹ ì¸ë±ìŠ¤ì˜ first_alphabet ë²¡í„°ê°’ì„ +1 
 	}
 }
 
-//Ã¹ ´Ü¾î¿Í ÀÔ·ÂÀ¸·Î µé¾î¿Â ´Ü¾î°¡ ¼­·Î 'ºñ½ÁÇÑ ´Ü¾î'ÀÎÁö È®ÀÎÇØ¼­ Ä«¿îÆ®ÇÏ´Â ÇÔ¼ö
+//ì²« ë‹¨ì–´ì™€ ì…ë ¥ìœ¼ë¡œ ë“¤ì–´ì˜¨ ë‹¨ì–´ê°€ ì„œë¡œ 'ë¹„ìŠ·í•œ ë‹¨ì–´'ì¸ì§€ í™•ì¸í•´ì„œ ì¹´ìš´íŠ¸í•˜ëŠ” í•¨ìˆ˜
 void getSimilarWord(vector<int> first_alphabet, string word, int& cnt) {
 
-	vector<int> alphabet(26, 0); //¾ËÆÄºªÀÇ °³¼ö¸¦ ¼¿ º¤ÅÍ
-	int different = 0; //Â÷ÀÌ³ª´Â ¾ËÆÄºªÀÇ °³¼ö¸¦ ¼¿ º¯¼ö
-	int add_cnt = 0; //°¢ ¾ËÆÄºª °³¼ö Â÷ÀÌ°¡ 1°³ ÀÌÇÏÀÓÀ» È®ÀÎÇÏ±â À§ÇÑ º¯¼öµé(2°³ ÀÌ»óÀÌ¸é ºñ½ÁÇÑ ´Ü¾î°¡ µÉ ¼ö x)
+	vector<int> alphabet(26, 0); //ì•ŒíŒŒë²³ì˜ ê°œìˆ˜ë¥¼ ì…€ ë²¡í„°
+	int different = 0; //ì°¨ì´ë‚˜ëŠ” ì•ŒíŒŒë²³ì˜ ê°œìˆ˜ë¥¼ ì…€ ë³€ìˆ˜
+	int add_cnt = 0; //ê° ì•ŒíŒŒë²³ ê°œìˆ˜ ì°¨ì´ê°€ 1ê°œ ì´í•˜ì„ì„ í™•ì¸í•˜ê¸° ìœ„í•œ ë³€ìˆ˜ë“¤(2ê°œ ì´ìƒì´ë©´ ë¹„ìŠ·í•œ ë‹¨ì–´ê°€ ë  ìˆ˜ x)
 	int sub_cnt = 0;
 
 	for (int i = 0; i < word.length(); i++) {
-		alphabet[word[i] - 'A']++; //´Ü¾îÀÇ ¾ËÆÄºªÀ» ¼ıÀÚ·Î º¯È¯, ÇØ´ç ÀÎµ¦½ºÀÇ alphabet º¤ÅÍ°ªÀ» +1 
+		alphabet[word[i] - 'A']++; //ë‹¨ì–´ì˜ ì•ŒíŒŒë²³ì„ ìˆ«ìë¡œ ë³€í™˜, í•´ë‹¹ ì¸ë±ìŠ¤ì˜ alphabet ë²¡í„°ê°’ì„ +1 
 	}
 
 	for (int i = 0; i < first_alphabet.size(); i++) {
 
 		int diff_tmp = first_alphabet[i] - alphabet[i];
-		if (diff_tmp != 0) { //Â÷ÀÌ°¡ ÀÖÀ¸¸é
-			if (diff_tmp == 1) { //Ã¹ ´Ü¾îÀÇ ¾ËÆÄºªº¸´Ù ÇÏ³ª ÀûÀ¸¸é
+		if (diff_tmp != 0) { //ì°¨ì´ê°€ ìˆìœ¼ë©´
+			if (diff_tmp == 1) { //ì²« ë‹¨ì–´ì˜ ì•ŒíŒŒë²³ë³´ë‹¤ í•˜ë‚˜ ì ìœ¼ë©´
 				add_cnt++;
 			}
-			if (diff_tmp == -1) { //Ã¹ ´Ü¾îÀÇ ¾ËÆÄºªº¸´Ù ÇÏ³ª ¸¹À¸¸é
+			if (diff_tmp == -1) { //ì²« ë‹¨ì–´ì˜ ì•ŒíŒŒë²³ë³´ë‹¤ í•˜ë‚˜ ë§ìœ¼ë©´
 				sub_cnt++;
 			}
-			different += abs(diff_tmp); //Â÷ÀÌ³ª´Â °³¼ö¸¸Å­ ´õÇÏ±â
+			different += abs(diff_tmp); //ì°¨ì´ë‚˜ëŠ” ê°œìˆ˜ë§Œí¼ ë”í•˜ê¸°
 		}
 	}
 
-	//1. Â÷ÀÌ°¡ ¾ø°Å³ª 
-	//2. 1°³ÀÌ°Å³ª(´õÇÏ°Å³ª »©¼­ °°¾ÆÁú ¼ö ÀÖÀ½) 
-	//3. 2°³ÀÎµ¥ ´Ù¸¥ ¹®ÀÚ¿¡¼­ 1°³¾¿ÀÌ¸é(±³Ã¼ÇØ¼­ °°¾ÆÁú ¼ö ÀÖÀ½)
+	//1. ì°¨ì´ê°€ ì—†ê±°ë‚˜ 
+	//2. 1ê°œì´ê±°ë‚˜(ë”í•˜ê±°ë‚˜ ë¹¼ì„œ ê°™ì•„ì§ˆ ìˆ˜ ìˆìŒ) 
+	//3. 2ê°œì¸ë° ë‹¤ë¥¸ ë¬¸ìì—ì„œ 1ê°œì”©ì´ë©´(êµì²´í•´ì„œ ê°™ì•„ì§ˆ ìˆ˜ ìˆìŒ)
 	if (different == 0 || different == 1 || different == 2 && (add_cnt == 1 && sub_cnt == 1)) {
-		cnt++; //ºñ½ÁÇÑ ´Ü¾î Ä«¿îÆ®
+		cnt++; //ë¹„ìŠ·í•œ ë‹¨ì–´ ì¹´ìš´íŠ¸
 	}
 }
 
@@ -50,10 +50,10 @@ int main() {
 	int n;
 	string first_word;
 	string word;
-	vector<int> first_alphabet(26, 0); //Ã¹ ´Ü¾îÀÇ ¾ËÆÄºªÀÇ °³¼ö¸¦ ¼¿ º¤ÅÍ
-	int cnt = 0; //ºñ½ÁÇÑ ´Ü¾îÀÇ °³¼ö¸¦ ¼¿ º¯¼ö
+	vector<int> first_alphabet(26, 0); //ì²« ë‹¨ì–´ì˜ ì•ŒíŒŒë²³ì˜ ê°œìˆ˜ë¥¼ ì…€ ë²¡í„°
+	int cnt = 0; //ë¹„ìŠ·í•œ ë‹¨ì–´ì˜ ê°œìˆ˜ë¥¼ ì…€ ë³€ìˆ˜
 
-	//ÀÔ·Â & ¿¬»ê
+	//ì…ë ¥ & ì—°ì‚°
 	cin >> n;
 	cin >> first_word;
 	getFirstWordAlpha(first_word, first_alphabet);
@@ -63,7 +63,7 @@ int main() {
 		getSimilarWord(first_alphabet, word, cnt);
 	}
 
-	//Ãâ·Â
+	//ì¶œë ¥
 	cout << cnt;
 
 	return 0;
