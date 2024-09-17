@@ -3,6 +3,7 @@
 
 using namespace std;
 
+//첫번째 단어의 알파벳 구성을 vector<int>로 저장
 void getFirstWordAlpha(string first_word, vector<int>& first_alphabet) {
 
 	for (int i = 0; i < first_word.length(); i++) {
@@ -10,6 +11,7 @@ void getFirstWordAlpha(string first_word, vector<int>& first_alphabet) {
 	}
 }
 
+//첫 단어와 입력으로 들어온 단어가 서로 '비슷한 단어'인지 확인해서 카운트하는 함수
 void getSimilarWord(vector<int> first_alphabet, string word, int& cnt) {
 
 	vector<int> alphabet(26, 0); //알파벳의 개수를 셀 벡터
