@@ -53,10 +53,8 @@ tuple<int, int, int> goldbach(int n, vector<bool>& is_prime) {
 	*/
 
 	for (int i = 0; i <= n / 2; i++) { //n/2까지만 확인하면 됨(반 나눠서 짝을 이루기 때문. ex. 8 = 3 + 5 = 5 + 3
-		if (is_prime[i]) { //i가 소수이면
-			if (is_prime[n - i]) { //n-i도 소수이면(합이 n이 되는 다른 수도 소수인지 확인)
-				return make_tuple(n, i, n - i);
-			}
+		if (is_prime[i] && is_prime[n - i]) { //i가 소수이고, n-i도 소수이면(합이 n이 되는 다른 수도 소수인지 확인)
+			return make_tuple(n, i, n - i);
 		}
 	}
 
