@@ -7,10 +7,10 @@ const int MAX_N_M = 7;
 const int MAX_NUM = 10000;
 
 int n, m;
-set<int> num_s; //ÀÚµ¿À¸·Î »çÀü¼ø Á¤·Ä
+set<int> num_s; //ìë™ìœ¼ë¡œ ì‚¬ì „ìˆœ ì •ë ¬
 vector<int> sequence(MAX_N_M, 0);
 
-//¼ö¿­ Ãâ·ÂÇÏ´Â ÇÔ¼ö
+//ìˆ˜ì—´ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void printSequence() {
 	for (int i = 0; i < m; i++) {
 		cout << sequence[i] << " ";
@@ -19,16 +19,16 @@ void printSequence() {
 	return;
 }
 
-//Áßº¹ ¼ö¿­ ¸¸µå´Â ÇÔ¼ö
+//ì¤‘ë³µ ìˆ˜ì—´ ë§Œë“œëŠ” í•¨ìˆ˜
 void getSequence(int cnt) {
 
-	//±âÀú Á¶°Ç: M°³ÀÇ ¼ıÀÚ¸¦ ¸ğµÎ »ÌÀº °æ¿ì
+	//ê¸°ì € ì¡°ê±´: Mê°œì˜ ìˆ«ìë¥¼ ëª¨ë‘ ë½‘ì€ ê²½ìš°
 	if (cnt == m) {
 		printSequence();
 		return;
 	}
 
-	for (set<int>::iterator iter = num_s.begin(); iter != num_s.end(); iter++) { //set ¼øÈ¸´Â iter »ç¿ë
+	for (set<int>::iterator iter = num_s.begin(); iter != num_s.end(); iter++) { //set ìˆœíšŒëŠ” iter ì‚¬ìš©
 		sequence[cnt] = *iter;
 		getSequence(cnt + 1);
 	}
@@ -38,14 +38,14 @@ int main() {
 
 	int num;
 	
-	//ÀÔ·Â
+	//ì…ë ¥
 	cin >> n >> m;
 	for (int i = 0; i < n; i++) {
 		cin >> num;
 		num_s.insert(num);
 	}
 
-	//¿¬»ê & Ãâ·Â
+	//ì—°ì‚° & ì¶œë ¥
 	getSequence(0);
 
 	return 0;

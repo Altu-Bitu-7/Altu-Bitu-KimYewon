@@ -11,12 +11,12 @@ const int MAX_OPER = 5;
 
 int n;
 int a[MAX_N];
-int oper[MAX_OPER]; //1¹ø ÀÎµ¦½º = µ¡¼À, 2¹ø ÀÎµ¦½º = »¬¼À, 3¹ø ÀÎµ¦½º = °ö¼À, 4¹ø ÀÎµ¦½º = ³ª´°¼À
+int oper[MAX_OPER]; //1ë²ˆ ì¸ë±ìŠ¤ = ë§ì…ˆ, 2ë²ˆ ì¸ë±ìŠ¤ = ëº„ì…ˆ, 3ë²ˆ ì¸ë±ìŠ¤ = ê³±ì…ˆ, 4ë²ˆ ì¸ë±ìŠ¤ = ë‚˜ëˆ—ì…ˆ
 
-int max_num = -1000000000; //ÃÖ´ë 10¾ï, ÃÖ¼Ò -10¾ï
+int max_num = -1000000000; //ìµœëŒ€ 10ì–µ, ìµœì†Œ -10ì–µ
 int min_num = 1000000000;
 
-//¼ö½ÄÀ» °è»êÇÏ´Â ÇÔ¼ö
+//ìˆ˜ì‹ì„ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜
 int calculate(int oper, int result, int cnt) {
 
 	if (oper == PLUS) {
@@ -28,36 +28,36 @@ int calculate(int oper, int result, int cnt) {
 	else if (oper == MULTIPLE) {
 		result *= a[cnt + 1];
 	}
-	else { //³ª´°¼À
+	else { //ë‚˜ëˆ—ì…ˆ
 		result /= a[cnt + 1];
 	}
 
 	return result;
 }
 
-//ÃÖ´ñ°ª, ÃÖ¼Ò°ªÀ» °»½ÅÇÏ´Â ÇÔ¼ö
+//ìµœëŒ“ê°’, ìµœì†Œê°’ì„ ê°±ì‹ í•˜ëŠ” í•¨ìˆ˜
 void updateAns(int new_result) {
 	max_num = max(max_num, new_result);
 	min_num = min(min_num, new_result);
 }
 
-//¼ö½ÄÀ» ¸¸µå´Â ÇÔ¼ö
+//ìˆ˜ì‹ì„ ë§Œë“œëŠ” í•¨ìˆ˜
 void makeExpression(int result, int cnt) {
 
-	//±âÀú Á¶°Ç: n-1°³ÀÇ ¿¬»êÀÚ¸¦ ¸ğµÎ »ç¿ëÇÑ °æ¿ì 
+	//ê¸°ì € ì¡°ê±´: n-1ê°œì˜ ì—°ì‚°ìë¥¼ ëª¨ë‘ ì‚¬ìš©í•œ ê²½ìš° 
 	if (cnt == n - 1) {
 		updateAns(result);
 		return;
 	}
 
 	for (int i = 1; i <= 4; i++) {
-		if (oper[i] > 0) { //ÇØ´ç ¿¬»êÀÚ »ç¿ëÈ½¼ö°¡ ³²Àº °æ¿ì¿¡¸¸
-			oper[i]--; //¿¬»êÀÚ »ç¿ë Ã¼Å©
+		if (oper[i] > 0) { //í•´ë‹¹ ì—°ì‚°ì ì‚¬ìš©íšŸìˆ˜ê°€ ë‚¨ì€ ê²½ìš°ì—ë§Œ
+			oper[i]--; //ì—°ì‚°ì ì‚¬ìš© ì²´í¬
 			int new_result = calculate(i, result, cnt);
 
 			makeExpression(new_result, cnt + 1);
 
-			//µ¹·Á³õ±â
+			//ëŒë ¤ë†“ê¸°
 			oper[i]++;
 		}
 	}
@@ -65,22 +65,22 @@ void makeExpression(int result, int cnt) {
 
 int main() {
 
-	//ÀÔ·Â
+	//ì…ë ¥
 	cin >> n;
 
 	for (int i = 0; i < n; i++) {
-		cin >> a[i]; //¼ö¿­ a
+		cin >> a[i]; //ìˆ˜ì—´ a
 	}
 
 	oper[0] = 0;
 	for (int i = 1; i < MAX_OPER; i++) {
-		cin >> oper[i]; //¿¬»êÀÚ ÀúÀå
+		cin >> oper[i]; //ì—°ì‚°ì ì €ì¥
 	}
 
-	//¿¬»ê
-	makeExpression(a[0], 0); //result ÃÊ±â°ª: Ã¹ ¹øÂ° ¼ıÀÚ
+	//ì—°ì‚°
+	makeExpression(a[0], 0); //result ì´ˆê¸°ê°’: ì²« ë²ˆì§¸ ìˆ«ì
 
-	//Ãâ·Â
+	//ì¶œë ¥
 	cout << max_num << "\n" << min_num;
 
 	return 0;
