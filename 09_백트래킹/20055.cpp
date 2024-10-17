@@ -3,89 +3,89 @@
 
 using namespace std;
 
-struct info { //³»±¸µµ¿Í ·Îº¿ Á¸Àç ¿©ºÎ¸¦ structÀ¸·Î °ü¸®
-    int power; //³»±¸µµ º¯¼ö
-    bool is_on; //·Îº¿ÀÇ Á¸Àç ¿©ºÎ º¯¼ö
+struct info { //ë‚´êµ¬ë„ì™€ ë¡œë´‡ ì¡´ìž¬ ì—¬ë¶€ë¥¼ structìœ¼ë¡œ ê´€ë¦¬
+    int power; //ë‚´êµ¬ë„ ë³€ìˆ˜
+    bool is_on; //ë¡œë´‡ì˜ ì¡´ìž¬ ì—¬ë¶€ ë³€ìˆ˜
 };
 
-//º§Æ®¸¦ ÇÑ Ä­ È¸Àü½ÃÅ°´Â ÇÔ¼ö
+//ë²¨íŠ¸ë¥¼ í•œ ì¹¸ íšŒì „ì‹œí‚¤ëŠ” í•¨ìˆ˜
 void rotateBelt(deque<info>& belt, int n) {
-    belt.push_front(belt.back()); //°¡Àå ¸¶Áö¸· ¿ø¼Ò¸¦ °¡Àå ¾Õ¿¡ ³õÀ¸¸é È¸ÀüÇÑ °Í°ú °°À½
-    belt.pop_back(); //°¡Àå ¸¶Áö¸· ¿ø¼Ò »èÁ¦
-    belt[n - 1].is_on = false; //·Îº¿ÀÌ ³»¸®´Â À§Ä¡(n-1)¿¡¼­ ¹«Á¶°Ç ³»¸²
+    belt.push_front(belt.back()); //ê°€ìž¥ ë§ˆì§€ë§‰ ì›ì†Œë¥¼ ê°€ìž¥ ì•žì— ë†“ìœ¼ë©´ íšŒì „í•œ ê²ƒê³¼ ê°™ìŒ
+    belt.pop_back(); //ê°€ìž¥ ë§ˆì§€ë§‰ ì›ì†Œ ì‚­ì œ
+    belt[n - 1].is_on = false; //ë¡œë´‡ì´ ë‚´ë¦¬ëŠ” ìœ„ì¹˜(n-1)ì—ì„œ ë¬´ì¡°ê±´ ë‚´ë¦¼
 }
 
-//·Îº¿À» ÇÑ Ä­ ÀÌµ¿½ÃÅ°´Â ÇÔ¼ö
+//ë¡œë´‡ì„ í•œ ì¹¸ ì´ë™ì‹œí‚¤ëŠ” í•¨ìˆ˜
 void moveRobot(deque<info>& belt, int n) {
-    for (int i = n - 2; i >= 0; i--) { //0 ~ n-2±îÁö¸¸ Ã¼Å©ÇÏ¸é µÊ(n-1Àº ³»¸®´Â À§Ä¡)
-        if (!belt[i].is_on) { //ÇØ´ç Ä­¿¡ ·Îº¿ÀÌ ¾øÀ¸¸é ´ÙÀ½À¸·Î
+    for (int i = n - 2; i >= 0; i--) { //0 ~ n-2ê¹Œì§€ë§Œ ì²´í¬í•˜ë©´ ë¨(n-1ì€ ë‚´ë¦¬ëŠ” ìœ„ì¹˜)
+        if (!belt[i].is_on) { //í•´ë‹¹ ì¹¸ì— ë¡œë´‡ì´ ì—†ìœ¼ë©´ ë‹¤ìŒìœ¼ë¡œ
             continue;
         }
 
-        //ÇØ´ç Ä­¿¡ ·Îº¿ÀÌ ÀÖÀ» ¶§
-        if (!belt[i + 1].is_on && (belt[i + 1].power >= 1)) { //´ÙÀ½ Ä­¿¡ ·Îº¿ÀÌ ¾ø°í, ³»±¸µµ°¡ 1 ÀÌ»ó ³²¾Æ ÀÖ´Ù¸é ÀÌµ¿
-            belt[i].is_on = false; //¿ø·¡ ÀÖ´ø Ä­¿¡¼­ ÀÌµ¿ÇÏ¹Ç·Î false·Î Ã¼Å©
-            belt[i + 1].is_on = true; //ÀÌµ¿ÇÒ Ä­(´ÙÀ½ Ä­) true·Î Ã¼Å©
-            belt[i + 1].power--; //ÀÌµ¿ÇÒ Ä­(´ÙÀ½ Ä­) ³»±¸µµ 1 °¨¼Ò
+        //í•´ë‹¹ ì¹¸ì— ë¡œë´‡ì´ ìžˆì„ ë•Œ
+        if (!belt[i + 1].is_on && (belt[i + 1].power >= 1)) { //ë‹¤ìŒ ì¹¸ì— ë¡œë´‡ì´ ì—†ê³ , ë‚´êµ¬ë„ê°€ 1 ì´ìƒ ë‚¨ì•„ ìžˆë‹¤ë©´ ì´ë™
+            belt[i].is_on = false; //ì›ëž˜ ìžˆë˜ ì¹¸ì—ì„œ ì´ë™í•˜ë¯€ë¡œ falseë¡œ ì²´í¬
+            belt[i + 1].is_on = true; //ì´ë™í•  ì¹¸(ë‹¤ìŒ ì¹¸) trueë¡œ ì²´í¬
+            belt[i + 1].power--; //ì´ë™í•  ì¹¸(ë‹¤ìŒ ì¹¸) ë‚´êµ¬ë„ 1 ê°ì†Œ
         }
 
-        belt[n - 1].is_on = false; //·Îº¿ÀÌ ³»¸®´Â À§Ä¡(n-1)ÀÌ¸é ¹«Á¶°Ç ³»¸²
+        belt[n - 1].is_on = false; //ë¡œë´‡ì´ ë‚´ë¦¬ëŠ” ìœ„ì¹˜(n-1)ì´ë©´ ë¬´ì¡°ê±´ ë‚´ë¦¼
     }
 }
 
-//¿Ã¸®´Â Ä­¿¡ ·Îº¿À» ¿Ã¸®´Â ÇÔ¼ö
+//ì˜¬ë¦¬ëŠ” ì¹¸ì— ë¡œë´‡ì„ ì˜¬ë¦¬ëŠ” í•¨ìˆ˜
 void putRobot(deque<info>& belt) {
-    if (!belt[0].is_on && belt[0].power >= 1) { //¿Ã¸®´Â Ä­(0)¿¡ ·Îº¿ÀÌ ¾ø°í, ³»±¸µµ°¡ 1 ÀÌ»ó ³²¾Æ ÀÖ´Ù¸é ·Îº¿À» »õ·Î ¿Ã¸²
-        belt[0].is_on = true; //¿Ã¸®´Â Ä­(0) true·Î Ã¼Å©
-        belt[0].power--; //¿Ã¸®´Â Ä­(0) ³»±¸µµ 1 °¨¼Ò
+    if (!belt[0].is_on && belt[0].power >= 1) { //ì˜¬ë¦¬ëŠ” ì¹¸(0)ì— ë¡œë´‡ì´ ì—†ê³ , ë‚´êµ¬ë„ê°€ 1 ì´ìƒ ë‚¨ì•„ ìžˆë‹¤ë©´ ë¡œë´‡ì„ ìƒˆë¡œ ì˜¬ë¦¼
+        belt[0].is_on = true; //ì˜¬ë¦¬ëŠ” ì¹¸(0) trueë¡œ ì²´í¬
+        belt[0].power--; //ì˜¬ë¦¬ëŠ” ì¹¸(0) ë‚´êµ¬ë„ 1 ê°ì†Œ
     }
 }
 
-//º§Æ®ÀÇ ³»±¸µµ¸¦ Ã¼Å©ÇÏ´Â ÇÔ¼ö
+//ë²¨íŠ¸ì˜ ë‚´êµ¬ë„ë¥¼ ì²´í¬í•˜ëŠ” í•¨ìˆ˜
 bool checkFinish(deque<info>& belt, int n, int k) {
-    int count = 0; //count¸¦ 0À¸·Î ÃÊ±âÈ­
+    int count = 0; //countë¥¼ 0ìœ¼ë¡œ ì´ˆê¸°í™”
 
-    for (int i = 0; i < 2 * n; i++) { //0ºÎÅÍ 2n-1±îÁö º§Æ® ÀüÃ¼¸¦ µ¹¸é¼­
-        if (belt[i].power == 0) { //ÇØ´ç Ä­ÀÇ ³»±¸µµ°¡ 0ÀÌ¸é
-            count++; //count°ª +1
+    for (int i = 0; i < 2 * n; i++) { //0ë¶€í„° 2n-1ê¹Œì§€ ë²¨íŠ¸ ì „ì²´ë¥¼ ëŒë©´ì„œ
+        if (belt[i].power == 0) { //í•´ë‹¹ ì¹¸ì˜ ë‚´êµ¬ë„ê°€ 0ì´ë©´
+            count++; //countê°’ +1
         }
     }
 
-    return count >= k; //count°ªÀÌ ÁÖ¾îÁø k°³ ÀÌ»óÀÌ¸é true ¹ÝÈ¯
+    return count >= k; //countê°’ì´ ì£¼ì–´ì§„ kê°œ ì´ìƒì´ë©´ true ë°˜í™˜
 }
 
-//1 ~ 3¹ø °úÁ¤À» ÁøÇàÇÏ°í, °úÁ¤ÀÌ Á¾·áµÇ¾úÀ» ¶§ ÁøÇà ÁßÀÌ¾ú´ø ´Ü°è¸¦ ¹ÝÈ¯ÇÏ´Â ÇÔ¼ö
+//1 ~ 3ë²ˆ ê³¼ì •ì„ ì§„í–‰í•˜ê³ , ê³¼ì •ì´ ì¢…ë£Œë˜ì—ˆì„ ë•Œ ì§„í–‰ ì¤‘ì´ì—ˆë˜ ë‹¨ê³„ë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
 int solution(deque<info>& belt, int n, int k) {
-    int step = 1; //stepÀ» 1·Î ÃÊ±âÈ­
-    while (true) { //if¹®¿¡ °É¸± ¶§±îÁö ¹Ýº¹
-        //º§Æ® È¸Àü½ÃÅ°±â
+    int step = 1; //stepì„ 1ë¡œ ì´ˆê¸°í™”
+    while (true) { //ifë¬¸ì— ê±¸ë¦´ ë•Œê¹Œì§€ ë°˜ë³µ
+        //ë²¨íŠ¸ íšŒì „ì‹œí‚¤ê¸°
         rotateBelt(belt, n);
-        //·Îº¿ ÀÌµ¿½ÃÅ°±â
+        //ë¡œë´‡ ì´ë™ì‹œí‚¤ê¸°
         moveRobot(belt, n);
-        //·Îº¿ ¿Ã¸®±â
+        //ë¡œë´‡ ì˜¬ë¦¬ê¸°
         putRobot(belt);
 
-        //º§Æ® ³»±¸µµ Ã¼Å©ÇÏ±â
-        if (checkFinish(belt, n, k)) { //³»±¸µµ°¡ 0ÀÎ Ä­ÀÇ °³¼ö°¡ k°³ ÀÌ»óÀÌ¾î¼­ true°¡ ¹ÝÈ¯µÈ °æ¿ì
-            return step; //°úÁ¤ Á¾·á, ±× ¶§ÀÇ stepÀ» ¹ÝÈ¯
+        //ë²¨íŠ¸ ë‚´êµ¬ë„ ì²´í¬í•˜ê¸°
+        if (checkFinish(belt, n, k)) { //ë‚´êµ¬ë„ê°€ 0ì¸ ì¹¸ì˜ ê°œìˆ˜ê°€ kê°œ ì´ìƒì´ì–´ì„œ trueê°€ ë°˜í™˜ëœ ê²½ìš°
+            return step; //ê³¼ì • ì¢…ë£Œ, ê·¸ ë•Œì˜ stepì„ ë°˜í™˜
         }
-        step++; //¹®Á¦ÀÇ 1 ~ 3¹ø±îÁö ¿Ï·áÇßÀ¸¹Ç·Î step + 1
+        step++; //ë¬¸ì œì˜ 1 ~ 3ë²ˆê¹Œì§€ ì™„ë£Œí–ˆìœ¼ë¯€ë¡œ step + 1
     }
 }
 
 int main() {
-    //ÀÔ·Â
+    //ìž…ë ¥
     int n, k;
-    cin >> n >> k; //º§Æ®ÀÇ ±æÀÌ¿Í Á¾·á Á¶°Ç(³»±¸µµ 0ÀÎ Ä­ÀÇ °³¼ö Á¶°Ç) ÀÔ·Â
-    deque<info> belt(2 * n); //ÄÁº£ÀÌ¾î º§Æ®ÀÇ ³»±¸µµ¿Í ·Îº¿ Á¸Àç ¿©ºÎ ÀúÀå
+    cin >> n >> k; //ë²¨íŠ¸ì˜ ê¸¸ì´ì™€ ì¢…ë£Œ ì¡°ê±´(ë‚´êµ¬ë„ 0ì¸ ì¹¸ì˜ ê°œìˆ˜ ì¡°ê±´) ìž…ë ¥
+    deque<info> belt(2 * n); //ì»¨ë² ì´ì–´ ë²¨íŠ¸ì˜ ë‚´êµ¬ë„ì™€ ë¡œë´‡ ì¡´ìž¬ ì—¬ë¶€ ì €ìž¥
     for (int i = 0; i < 2 * n; i++) {
-        cin >> belt[i].power; //2n°³ÀÇ º§Æ® ³»±¸µµ ÀÔ·Â
-        belt[i].is_on = false; //·Îº¿ Á¸Àç ¿©ºÎ false·Î ÃÊ±âÈ­
+        cin >> belt[i].power; //2nê°œì˜ ë²¨íŠ¸ ë‚´êµ¬ë„ ìž…ë ¥
+        belt[i].is_on = false; //ë¡œë´‡ ì¡´ìž¬ ì—¬ë¶€ falseë¡œ ì´ˆê¸°í™”
     }
 
-    //¿¬»ê
-    int answer = solution(belt, n, k); //answer¿¡ °úÁ¤ÀÌ Á¾·áµÇ¾úÀ» ¶§ÀÇ ´Ü°è°¡ ´ã±è
+    //ì—°ì‚°
+    int answer = solution(belt, n, k); //answerì— ê³¼ì •ì´ ì¢…ë£Œë˜ì—ˆì„ ë•Œì˜ ë‹¨ê³„ê°€ ë‹´ê¹€
 
-    //Ãâ·Â
-    cout << answer; //answer Ãâ·Â
+    //ì¶œë ¥
+    cout << answer; //answer ì¶œë ¥
 }

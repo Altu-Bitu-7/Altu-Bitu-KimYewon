@@ -1,4 +1,4 @@
-/* Çª´Â Áß */
+/* í‘¸ëŠ” ì¤‘ */
 #include <iostream>
 #include <vector>
 
@@ -12,7 +12,7 @@ typedef pair<int, int> ii;
 
 int calNumOfKMelon(vector<ii> side, int k) {
 
-	//Æø, ³ôÀÌÀÇ ÃÖ´ñ°ª ±¸ÇÏ±â
+	//í­, ë†’ì´ì˜ ìµœëŒ“ê°’ êµ¬í•˜ê¸°
 	int max_width = 0;
 	int max_height = 0;
 
@@ -25,22 +25,22 @@ int calNumOfKMelon(vector<ii> side, int k) {
 		}
 	}
 
-	int area = max_height * max_width; //Á÷»ç°¢Çü ³ĞÀÌ¸¦ ¿ì¼±ÀûÀ¸·Î °è»ê
+	int area = max_height * max_width; //ì§ì‚¬ê°í˜• ë„“ì´ë¥¼ ìš°ì„ ì ìœ¼ë¡œ ê³„ì‚°
 	
 	int sub = 0;
-	if (side[1].second < side[5].second) { //2¹øÂ° µ¿ÂÊÀ¸·ÎÀÇ ±æÀÌ°¡ 6¹øÂ° ¼­ÂÊÀ¸·ÎÀÇ ±æÀÌº¸´Ù ÀÛÀº °æ¿ì (¤¡ ¶Ç´Â¦®)
-		if (side[0].second < side[4].second) { //1¹øÂ° ³²ÂÊÀ¸·ÎÀÇ ±æÀÌ°¡ 5¹øÂ° ºÏÂÊÀ¸·ÎÀÇ ±æÀÌº¸´Ù ÀÛÀº °æ¿ì(¤¡)
+	if (side[1].second < side[5].second) { //2ë²ˆì§¸ ë™ìª½ìœ¼ë¡œì˜ ê¸¸ì´ê°€ 6ë²ˆì§¸ ì„œìª½ìœ¼ë¡œì˜ ê¸¸ì´ë³´ë‹¤ ì‘ì€ ê²½ìš° (ã„± ë˜ëŠ”â”)
+		if (side[0].second < side[4].second) { //1ë²ˆì§¸ ë‚¨ìª½ìœ¼ë¡œì˜ ê¸¸ì´ê°€ 5ë²ˆì§¸ ë¶ìª½ìœ¼ë¡œì˜ ê¸¸ì´ë³´ë‹¤ ì‘ì€ ê²½ìš°(ã„±)
 			sub = side[1].second * side[2].second;
 		}
-		else { //1¹øÂ° ³²ÂÊÀ¸·ÎÀÇ ±æÀÌ°¡ 5¹øÂ° ºÏÂÊÀ¸·ÎÀÇ ±æÀÌº¸´Ù Å« °æ¿ì(¦®)
+		else { //1ë²ˆì§¸ ë‚¨ìª½ìœ¼ë¡œì˜ ê¸¸ì´ê°€ 5ë²ˆì§¸ ë¶ìª½ìœ¼ë¡œì˜ ê¸¸ì´ë³´ë‹¤ í° ê²½ìš°(â”)
 			sub = side[2].second * side[3].second;
 		}
 	}
-	else { //2¹øÂ° µ¿ÂÊÀ¸·ÎÀÇ ±æÀÌ°¡ 6¹øÂ° ¼­ÂÊÀ¸·ÎÀÇ ±æÀÌº¸´Ù Å« °æ¿ì (¦± ¶Ç´Â ¦°)
-		if (side[0].second < side[2].second) { //1¹øÂ° ³²ÂÊÀ¸·ÎÀÇ ±æÀÌ°¡ 3¹øÂ° ºÏÂÊÀ¸·ÎÀÇ ±æÀÌº¸´Ù ÀÛÀº °æ¿ì(¦°)
+	else { //2ë²ˆì§¸ ë™ìª½ìœ¼ë¡œì˜ ê¸¸ì´ê°€ 6ë²ˆì§¸ ì„œìª½ìœ¼ë¡œì˜ ê¸¸ì´ë³´ë‹¤ í° ê²½ìš° (â”— ë˜ëŠ” â”›)
+		if (side[0].second < side[2].second) { //1ë²ˆì§¸ ë‚¨ìª½ìœ¼ë¡œì˜ ê¸¸ì´ê°€ 3ë²ˆì§¸ ë¶ìª½ìœ¼ë¡œì˜ ê¸¸ì´ë³´ë‹¤ ì‘ì€ ê²½ìš°(â”›)
 			sub = side[4].second * side[5].second;
 		}
-		else { //1¹øÂ° ³²ÂÊÀ¸·ÎÀÇ ±æÀÌ°¡ 3¹øÂ° ºÏÂÊÀ¸·ÎÀÇ ±æÀÌº¸´Ù Å« °æ¿ì(¦±)
+		else { //1ë²ˆì§¸ ë‚¨ìª½ìœ¼ë¡œì˜ ê¸¸ì´ê°€ 3ë²ˆì§¸ ë¶ìª½ìœ¼ë¡œì˜ ê¸¸ì´ë³´ë‹¤ í° ê²½ìš°(â”—)
 			sub = side[3].second * side[4].second;
 		}
 	}
@@ -53,9 +53,9 @@ int calNumOfKMelon(vector<ii> side, int k) {
 	case 1: 
 	}
 
-	area -= sub; //ºó ³×¸ğ ³ĞÀÌ Á¦¿Ü
+	area -= sub; //ë¹ˆ ë„¤ëª¨ ë„“ì´ ì œì™¸
 	
-	return area * k; //Âü¿ÜÀÇ ÃÑ °³¼ö ¹İÈ¯
+	return area * k; //ì°¸ì™¸ì˜ ì´ ê°œìˆ˜ ë°˜í™˜
 }
 
 int main() {
@@ -64,7 +64,7 @@ int main() {
 	int direction, length;
 	vector<ii> side(SIDE_NUM);
 
-	//ÀÔ·Â
+	//ì…ë ¥
 	cin >> k;
 	for (int i = 0; i < SIDE_NUM; i++) {
 		cin >> direction >> length;
@@ -72,7 +72,7 @@ int main() {
 		side[i].second = length;
 	}
 
-	//¿¬»ê & Ãâ·Â
+	//ì—°ì‚° & ì¶œë ¥
 	cout << calNumOfKMelon(side, k);
 
 	return 0;
